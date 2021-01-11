@@ -1,52 +1,16 @@
 import {Router} from 'express';
 
-export const freightCoRouter = Router();
+// SHARED
+import {labelCancel} from './shared/label-cancel'
+import {pickupCancel} from './shared/pickup-cancel'
+import {pickupCreate} from './shared/pickup-create'
 
-/**
- * Generate a label.
- */
-freightCoRouter.post('/label/generate', (_, res) => {
-  res.json({'foo': 'bar'});
-});
+// FREIGHT CO
+import {labelCreate} from './freight-co/label-create'
 
-/**
- * Schedule a pick-up.
- */
-freightCoRouter.post('/pick-up', (_, res) => {
-  res.json({'foo': 'bar'});
-});
+export const freightCoRouter = Router()
 
-/**
- * Cancel a pick-up.
- */
-freightCoRouter.delete('/pick-up/:id', (_, res) => {
-  res.json({'foo': 'bar'});
-});
-
-/**
- * Get rates for a shipment.
- */
-freightCoRouter.post('/rates/shipment', (_, res) => {
-  res.json({'foo': 'bar'});
-});
-
-/**
- * Generate an EOD.
- */
-freightCoRouter.get('/eod/generate', (_, res) => {
-  res.json({'foo': 'bar'});
-});
-
-/**
- * Generate an EOD.
- */
-freightCoRouter.get('/shipments/rates', (_, res) => {
-  res.json({'foo': 'bar'});
-});
-
-/**
- * Void labels.
- */
-freightCoRouter.post('/labels/cancel', (_, res) => {
-  res.json({'foo': 'bar'});
-});
+freightCoRouter.post('/label/cancel', labelCancel)
+freightCoRouter.post('/label/create', labelCreate)
+freightCoRouter.post('/pickup/create', pickupCancel)
+freightCoRouter.post('/pickup/cancel', pickupCreate)
