@@ -12,11 +12,10 @@ type TrackingEvent = {
   description: string
   date: string
   status: string
+  status_code: string
   errors: string[]
-  statusCode: string
   latitude: number
   longitude: number
-  addressType: string
   address: Address
 }
 
@@ -27,8 +26,10 @@ export const event = (): TrackingEvent => {
     description: 'Received at facility,',
     date: new Date().toISOString(),
     status: status[1],
+    status_code: status[0],
     errors: <string[]>[],
-    statusCode: status[0],
+    latitude: Number(address.latitude()),
+    longitude: Number(address.longitude()),
     address: {
       business_name: company.companyName(),
       lines: [`${address.streetAddress()} ${address.streetName()} ${address.streetSuffix()}`],
@@ -36,10 +37,8 @@ export const event = (): TrackingEvent => {
       state: address.state(),
       postal_code: address.zipCode(),
       country: 'US',
-      time_zone: address.timeZone()
-    },
-    addressType: 'residential',
-    latitude: Number(address.latitude()),
-    longitude: Number(address.longitude()),
+      time_zone: address.timeZone(),
+      type: 'residential'
+    }
   }
 }

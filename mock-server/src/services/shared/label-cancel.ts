@@ -6,7 +6,7 @@ import {random} from 'faker'
  */
 export const labelCancel = (req: Request, res: Response): void => {
   type Cancellation = {
-    cancellationID: string
+    id: string
   }
 
   type Request = {
@@ -15,11 +15,11 @@ export const labelCancel = (req: Request, res: Response): void => {
 
   type Result = {
     id: string
-    cancellationStatus: string
-    cancellationCode: string
-    cancellationDescription: string
-    cancellationNote: string
-    cancellationConfirmation: string
+    status: string
+    code: string
+    description: string
+    note: string
+    confirmation: string
   }
 
   const request: Request = req.body;
@@ -27,22 +27,22 @@ export const labelCancel = (req: Request, res: Response): void => {
   const cancel = (cancellation: Cancellation): Result => {
     if (random.boolean()) {
       return {
-        id: cancellation.cancellationID,
-        cancellationStatus: 'FAILED',
-        cancellationCode: 'FA',
-        cancellationDescription: 'Cancellation failed.',
-        cancellationNote: 'Please call 1-800-555-5555 to cancel.',
-        cancellationConfirmation: random.uuid()
+        id: cancellation.id,
+        status: 'FAILED',
+        code: 'FA',
+        description: 'Cancellation failed.',
+        note: 'Please call 1-800-555-5555 to cancel.',
+        confirmation: random.uuid()
       }
     }
 
     return {
-      id: cancellation.cancellationID,
-      cancellationStatus: 'COMPLETE',
-      cancellationCode: 'AC',
-      cancellationDescription: 'Cancellation is complete.',
-      cancellationNote: '',
-      cancellationConfirmation: random.uuid()
+      id: cancellation.id,
+      status: 'COMPLETE',
+      code: 'AC',
+      description: 'Cancellation is complete.',
+      note: '',
+      confirmation: random.uuid()
     }
   }
 

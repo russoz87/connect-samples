@@ -9,13 +9,13 @@ import {event} from '../../utils/shipment'
  */
 export const shipmentHistory = (req: Request, res: Response): void => {
   type Request = {
-    trackingNumber: string
+    tracking_number: string
   }
 
   const request: Request = req.body;
 
   const data = {
-    trackingNumber: request.trackingNumber,
+    trackingNumber: request.tracking_number,
     deliveryDate: date.soon().toISOString(),
     packages: [
       {
@@ -25,15 +25,15 @@ export const shipmentHistory = (req: Request, res: Response): void => {
         height: random.number(5),
         dimUnit: 'in',
         weight: random.number(5),
-        weightUnit: 'lb'
+        weight_unit: 'lb'
       }
     ],
     trackingEvents: range(random.number(3)).map(event),
     signedBy: {
       salutation: name.prefix(),
-      firstName: name.firstName(),
-      middleName: '',
-      lastName: name.lastName(),
+      first_name: name.firstName(),
+      middle_name: '',
+      last_name: name.lastName(),
       suffix: '',
     },
     notes: [
