@@ -2,6 +2,8 @@
   "name": "mock-server",
   "version": "1.0.0",
   "description": "Mock server for all ShipEngine Connect sample applications.",
+  "author": "Anthony Shull <anthony.shull@auctane.com>",
+  "license": "Apache-2.0",
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
@@ -12,9 +14,6 @@
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "faker": "^5.1.0"

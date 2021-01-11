@@ -4,20 +4,19 @@ import {Router} from 'express';
 import {labelCancel} from './shared/label-cancel'
 import {pickupCancel} from './shared/pickup-cancel'
 import {pickupCreate} from './shared/pickup-create'
+import {shipmentHistory} from './shared/shipment-history'
+import {shipmentRates} from './shared/shipment-rates'
 
 // CARGO INC
 import {eodCreate} from './cargo-inc/eod-create'
-
 import {labelCreate} from './cargo-inc/label-create'
-import {shipmentHistory} from './cargo-inc/shipment-history'
-import {shipmentRates} from './cargo-inc/shipment-rates'
 
-export const cargoIncRouter = Router();
+export const cargoIncRouter = Router()
 
-cargoIncRouter.get('/eod/create', eodCreate);
+cargoIncRouter.post('/eod/create', eodCreate)
 cargoIncRouter.get('/label/cancel', labelCancel)
-cargoIncRouter.get('/label/create', labelCreate);
-cargoIncRouter.get('/pickup/cancel', pickupCancel);
-cargoIncRouter.get('/pickup/create', pickupCreate);
-cargoIncRouter.get('/shipment/history', shipmentHistory);
+cargoIncRouter.post('/label/create', labelCreate)
+cargoIncRouter.get('/pickup/cancel', pickupCancel)
+cargoIncRouter.post('/pickup/create', pickupCreate)
+cargoIncRouter.get('/shipment/history', shipmentHistory)
 cargoIncRouter.get('/shipment/rates', shipmentRates)

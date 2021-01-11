@@ -1,19 +1,25 @@
-import express from 'express';
+import express from 'express'
 
-import {authRouter} from './services/auth';
-import {cargoIncRouter} from './services/cargo-inc';
-import {freightCoRouter} from './services/freight-co';
-import {iBuyRouter} from './services/i-buy';
-import {parcelPostRouter} from './services/parcel-post';
-import {southwestProductsRouter} from './services/southwest-products';
+// AUTH
+import {authRouter} from './auth'
 
-const app = express().use(express.json());
+// SERVICES
+import {cargoIncRouter} from './services/cargo-inc'
+import {freightCoRouter} from './services/freight-co'
+import {iBuyRouter} from './services/i-buy'
+import {parcelPostRouter} from './services/parcel-post'
+import {southwestProductsRouter} from './services/southwest-products'
 
-app.use('/auth', authRouter);
-app.use('/cargo-inc', cargoIncRouter);
-app.use('/freight-co', freightCoRouter);
-app.use('/i-buy', iBuyRouter);
-app.use('/parcel-post', parcelPostRouter);
-app.use('/southwest-products', southwestProductsRouter);
+const app = express().use(express.json())
+
+// AUTH
+app.use('/auth', authRouter)
+
+// SERVICES
+app.use('/cargo-inc', cargoIncRouter)
+app.use('/freight-co', freightCoRouter)
+app.use('/i-buy', iBuyRouter)
+app.use('/parcel-post', parcelPostRouter)
+app.use('/southwest-products', southwestProductsRouter)
 
 app.listen(process.env.PORT);

@@ -1,5 +1,6 @@
 import {readFileSync} from 'fs'
 import {join} from 'path'
+import {cwd} from 'process'
 
 import {Request, Response} from 'express'
 import {date, random} from 'faker'
@@ -22,7 +23,7 @@ export const labelCreate = (req: Request, res: Response): void => {
     shipment_cost: .97 * request.total_weight,
     confirmation_cost: 1.26,
     location_cost: .000012 * Math.floor(Math.random() * 10) + 1,
-    image: readFileSync(join(__dirname, 'files', 'sample-label.pdf')).toString('base64')
+    image: readFileSync(join(cwd(), 'files', 'sample-label.pdf')).toString('base64')
   }
 
   res.json(data)

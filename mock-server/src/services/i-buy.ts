@@ -1,7 +1,7 @@
 import {Router} from 'express';
 
-import {ordersGet} from './i-buy/orders-get'
-import {ordersVerify} from './i-buy/orders-verify'
+import {ordersGet} from './shared/orders-get'
+import {ordersVerify} from './shared/orders-verify'
 
 export const iBuyRouter = Router();
 
