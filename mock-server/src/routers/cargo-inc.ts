@@ -14,9 +14,9 @@ import {labelCreate} from './controllers/cargo-inc/label-create'
 export const cargoIncRouter = Router()
 
 cargoIncRouter.post('/eod/create', eodCreate)
-cargoIncRouter.get('/label/cancel', labelCancel)
+cargoIncRouter.post('/label/cancel', labelCancel)
 cargoIncRouter.post('/label/create', labelCreate)
-cargoIncRouter.get('/pickup/cancel', pickupCancel)
+cargoIncRouter.post('/pickup/cancel', pickupCancel)
 cargoIncRouter.post('/pickup/create', pickupCreate)
-cargoIncRouter.get('/shipment/history', shipmentHistory)
-cargoIncRouter.get('/shipment/rates', shipmentRates)
+cargoIncRouter.post('/shipment/history', shipmentHistory)
+cargoIncRouter.post('/shipment/rates', shipmentRates)

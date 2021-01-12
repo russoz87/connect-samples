@@ -6,4 +6,4 @@ import {ordersVerify} from './controllers/shared/orders-verify'
 export const iBuyRouter = Router();
 
 iBuyRouter.get('/orders', ordersGet);
-iBuyRouter.get('/orders/verify', ordersVerify)
+iBuyRouter.post('/orders/verify', ordersVerify)

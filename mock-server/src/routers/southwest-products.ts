@@ -6,4 +6,4 @@ import {ordersVerify} from './controllers/shared/orders-verify'
 export const southwestProductsRouter = Router();
 
 southwestProductsRouter.get('/orders', ordersGet);
-southwestProductsRouter.get('/orders/verify', ordersVerify)
+southwestProductsRouter.post('/orders/verify', ordersVerify)

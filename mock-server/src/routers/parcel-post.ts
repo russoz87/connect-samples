@@ -13,10 +13,10 @@ import {manifestCreate} from './controllers/parcel-post/manifest-create'
 
 export const parcelPostRouter = Router()
 
-parcelPostRouter.get('/label/cancel', labelCancel)
-parcelPostRouter.get('/label/create', labelCreate)
-parcelPostRouter.get('/manifest/create', manifestCreate)
-parcelPostRouter.get('/pickup/cancel', pickupCancel)
-parcelPostRouter.get('/pickup/create', pickupCreate)
-parcelPostRouter.get('/shipment/history', shipmentHistory)
-parcelPostRouter.get('/shipment/rates', shipmentRates)
+parcelPostRouter.post('/label/cancel', labelCancel)
+parcelPostRouter.post('/label/create', labelCreate)
+parcelPostRouter.post('/manifest/create', manifestCreate)
+parcelPostRouter.post('/pickup/cancel', pickupCancel)
+parcelPostRouter.post('/pickup/create', pickupCreate)
+parcelPostRouter.post('/shipment/history', shipmentHistory)
+parcelPostRouter.post('/shipment/rates', shipmentRates)
