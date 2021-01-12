@@ -1,19 +1,20 @@
 import {Request, Response} from 'express'
 import {random} from 'faker'
 
+// TYPES
+type RequestBody = {
+  operation: string
+  session_id: string
+  sales_order_ids: string[]
+}
+
 /**
  * Verify orders.
  */
 export const ordersVerify = (req: Request, res: Response): void => {
-  type Request = {
-    operation: string
-    session_id: string
-    sales_order_ids: string[]
-  }
+  const body: RequestBody = req.body
 
-  const request: Request = req.body
-
-  const data = request.sales_order_ids.map((sales_order_id) => {
+  const data = body.sales_order_ids.map((sales_order_id) => {
     const succeeded = random.boolean()
 
     return {

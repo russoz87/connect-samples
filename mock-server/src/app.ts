@@ -1,14 +1,14 @@
 import express from 'express'
 
 // AUTH
-import {authRouter} from './auth'
+import {authRouter} from './routers/auth'
 
 // SERVICES
-import {cargoIncRouter} from './services/cargo-inc'
-import {freightCoRouter} from './services/freight-co'
-import {iBuyRouter} from './services/i-buy'
-import {parcelPostRouter} from './services/parcel-post'
-import {southwestProductsRouter} from './services/southwest-products'
+import {cargoIncRouter} from './routers/cargo-inc'
+import {freightCoRouter} from './routers/freight-co'
+import {iBuyRouter} from './routers/i-buy'
+import {parcelPostRouter} from './routers/parcel-post'
+import {southwestProductsRouter} from './routers/southwest-products'
 
 const app = express().use(express.json())
 

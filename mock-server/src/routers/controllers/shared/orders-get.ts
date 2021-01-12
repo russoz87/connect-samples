@@ -1,9 +1,23 @@
-import {address, commerce, company, date, lorem, name, random} from 'faker'
+import {Request, Response} from 'express'
+import {address, commerce, company, date, name, random} from 'faker'
 
-import {Address} from './address'
-import {Payment, PaymentMethod, PaymentStatus} from './payment'
-import {enumeration} from './random'
-import {range} from './range'
+import {enumeration, range} from '../../../utils/fp'
+import {Address} from '../../../utils/types'
+
+// ENUMS
+enum PaymentStatus {
+  PaymentNeeded = 'payment_needed',
+  Processing = 'processing',
+  Paid = 'paid',
+  FailedPayment = 'failed_payment',
+  Cancelled = 'cancelled'
+}
+
+enum PaymentMethod {
+  Cash = 'cash',
+  CC = 'cc',
+  TransferFromBank = 'transfer_from_bank'
+}
 
 enum OrderStatus {
   PaymentNeeded = 'payment_needed',
@@ -11,6 +25,12 @@ enum OrderStatus {
   OnHold = 'on_hold',
   Completed = 'completed',
   Cancelled = 'cancelled'
+}
+
+// TYPES
+type Payment = {
+  status: string
+  method: string
 }
 
 type Buyer = {
@@ -44,6 +64,7 @@ type Order = {
   shipping_items: ShippingItem[]
 }
 
+// HELPER FUNCTIONS
 const item = (): ShippingItem => {
   return {
     id: random.uuid(),
@@ -54,13 +75,13 @@ const item = (): ShippingItem => {
   }
 }
 
-export const order = (): Order => {
+const order = (): Order => {
   return {
     id: random.uuid(),
     created_at: date.recent().toISOString(),
     status: enumeration(OrderStatus),
     seller_id: random.uuid(),
-    shipping_notes: lorem.words(4),
+    shipping_notes: random.words(4),
     buyer: {
       id: random.uuid(),
       name: `${name.firstName()} ${name.lastName()}`
@@ -82,6 +103,15 @@ export const order = (): Order => {
       confirmation_type: 'signature',
       delivery_date: date.soon(1).toISOString()
     },
-    shipping_items: range(random.number(3)).map(item)
+    shipping_items: range(random.number(3) + 1).map(item)
   }
+}
+
+/**
+ * Retrieve sales orders, ordered by date.
+ */
+export const ordersGet = (_: Request, res: Response): void => {
+  const data = range(random.number(3) + 1).map(order)
+
+  res.json(data)
 }

@@ -1,15 +1,15 @@
 import {Router} from 'express';
 
 // SHARED
-import {labelCancel} from './shared/label-cancel'
-import {pickupCancel} from './shared/pickup-cancel'
-import {pickupCreate} from './shared/pickup-create'
-import {shipmentHistory} from './shared/shipment-history'
-import {shipmentRates} from './shared/shipment-rates'
+import {labelCancel} from './controllers/shared/label-cancel'
+import {pickupCancel} from './controllers/shared/pickup-cancel'
+import {pickupCreate} from './controllers/shared/pickup-create'
+import {shipmentHistory} from './controllers/shared/shipment-history'
+import {shipmentRates} from './controllers/shared/shipment-rates'
 
 // CARGO INC
-import {eodCreate} from './cargo-inc/eod-create'
-import {labelCreate} from './cargo-inc/label-create'
+import {eodCreate} from './controllers/cargo-inc/eod-create'
+import {labelCreate} from './controllers/cargo-inc/label-create'
 
 export const cargoIncRouter = Router()
 
