@@ -1,13 +1,12 @@
 "use strict";
 
-const apiClient = require("./mock-api/client");
+const apiClient = require("./api/client");
 
 async function cancelShipments(transaction, shipmentCancellations) {
   // STEP 1: Validation
 
   // STEP 2: Create the data that the carrier's API expects
   let data = {
-    operation: "void_labels",
     session_id: transaction.session.id,
     cancellations: shipmentCancellations.map((cancellation) => {
       const { cancellationID, trackingNumber } = cancellation;
@@ -20,7 +19,7 @@ async function cancelShipments(transaction, shipmentCancellations) {
   };
 
   // STEP 3: Call the carrier's API
-  const response = await apiClient.request({ data });
+  const response = await apiClient('cargo-inc').post('/label/cancel', data);
 
   // STEP 4: Create the output data that ShipEngine Connect expects
   return await formatCancellationResponse(response.data);

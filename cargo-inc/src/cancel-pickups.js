@@ -1,7 +1,11 @@
-const apiClient = require("./mock-api/client");
-const yaml = require("js-yaml");
+"use strict";
+
 const fs = require("fs");
 const path = require("path");
+
+const yaml = require("js-yaml");
+
+const apiClient = require("./api/client");
 
 const sameDayPath = path.join(__dirname, "..", "pickup-services", "same-day.yaml");
 const sameDayPickup = yaml.safeLoad(fs.readFileSync(sameDayPath, "utf8"));
@@ -12,7 +16,6 @@ const sameDayPickup = yaml.safeLoad(fs.readFileSync(sameDayPath, "utf8"));
 async function cancelPickups(transaction, pickups) {
 
   let data = {
-    operation: "pick_up_cancellation",
     scheduled_pick_ups: pickups.map((pickup) => {
       // STEP 1: Validation
       if (pickup.pickupService.id === sameDayPickup.id) {
@@ -30,7 +33,7 @@ async function cancelPickups(transaction, pickups) {
   };
 
   // STEP 3: Call the carrier's API
-  let response = await apiClient.request({ data });
+  const response = await apiClient('cargo-inc').post('/pickup/cancel', data);
 
   // STEP 4: Create the output data that ShipEngine Connect expects
   return response.data.canceled_pick_ups.map((cancellation, index) => {

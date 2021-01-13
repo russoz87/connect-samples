@@ -1,8 +1,10 @@
-const apiClient = require("./mock-api/client");
-const { ONE_DAY, ONE_HOUR } = require("./mock-api/pickup-cancellation");
-const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
+
+const dayjs = require('dayjs');
+const yaml = require("js-yaml");
+
+const apiClient = require("./api/client");
 
 const nextDayPath = path.join(__dirname, "..", "pickup-services", "next-day.yaml");
 const nextDayPickup = yaml.safeLoad(fs.readFileSync(nextDayPath, "utf8"));
@@ -13,14 +15,12 @@ const nextDayPickup = yaml.safeLoad(fs.readFileSync(nextDayPath, "utf8"));
 async function schedulePickup(transaction, pickup) {
 
     // STEP 1: Validation
-    if (pickup.pickupService.id === nextDayPickup.id
-        && pickup.timeWindow.startDateTime.getTime() < (Date.now() + ONE_DAY)) {
+    if (pickup.timeWindow.startDateTime.getTime() < dayjs().add(1, 'day')) {
         throw new Error(`${nextDayPickup.name} must be scheduled 24 hours in advance`);
     }
 
     // STEP 2: Create the data that the carrier's API expects
     let data = {
-        operation: "pick_up",
         session_id: transaction.session.id,
         service_code: pickup.pickupService.code,
         date_time: pickup.timeWindow.startDateTime,
@@ -36,7 +36,7 @@ async function schedulePickup(transaction, pickup) {
     };
 
     // STEP 3: Call the carrier's API
-    const response = await apiClient.request({ data });
+    const response = await apiClient('cargo-inc').post('/pickup/create', data);
 
     // STEP 4: Create the output data that ShipEngine Connect expects
     return formatConfirmation(response.data);

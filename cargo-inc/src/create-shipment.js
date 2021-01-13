@@ -1,7 +1,8 @@
 "use strict";
 
-const axios = require("axios");
-const apiClient = require("./mock-api/client");
+const axios = require('axios');
+
+const apiClient = require("./api/client");
 
 // The packaging ID for a customer's own packaging
 const OWN_PACKAGING = "03318192-3e6c-475f-a496-a4f17c1dbcae";
@@ -19,7 +20,6 @@ async function createShipment(transaction, shipment) {
 
   // STEP 2: Create the data that the carrier's API expects
   let data = {
-    operation: "generate_label",
     session_id: transaction.session.id,
     service_code: shipment.deliveryService.code,
     ship_date: shipment.shipDateTime.toISOString(),
@@ -33,7 +33,7 @@ async function createShipment(transaction, shipment) {
   }
 
   // STEP 3: Call the carrier's API
-  const response = await apiClient.request({ data });
+  const response = await apiClient('cargo-inc').post('/label/create', data);
 
   // STEP 4: Create the output data that ShipEngine Connect expects
   return await formatShipment(response.data);

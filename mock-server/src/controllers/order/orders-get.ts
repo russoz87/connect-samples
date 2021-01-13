@@ -1,8 +1,8 @@
 import {Request, Response} from 'express'
 import {address, commerce, company, date, name, random} from 'faker'
 
-import {enumeration, range} from '../../../utils/fp'
-import {Address} from '../../../utils/types'
+import {enumeration, range} from '../../utils/fp'
+import {Address} from '../../utils/types'
 
 // ENUMS
 enum PaymentStatus {

@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import {date, random} from 'faker'
 
-import {cartesian, range} from '../../../utils/fp'
+import {cartesian, range} from '../../utils/fp'
 
 // TYPES
 type Rate = {

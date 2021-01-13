@@ -1,6 +1,6 @@
 "use strict";
 
-const apiClient = require("./mock-api/client");
+const apiClient = require("./api/client");
 
 async function trackShipment(transaction, trackingCriteria) {
   // STEP 1: Validation
@@ -17,18 +17,16 @@ async function trackShipment(transaction, trackingCriteria) {
   };
 
   // STEP 3: Call the carrier"s API
-  const response = await apiClient.request({ data });
+  const response = await apiClient('cargo-inc').request('/shipment/history', data);
 
   // STEP 4: Create the output data that ShipEngine Connect expects
-  return await formatTrackingResponse(response.data);
-
+  return formatTrackingResponse(response.data);
 }
 
 /**
  * Formats a shipment in the way ShipEngine Connect expects
  */
-async function formatTrackingResponse(response) {
-
+function formatTrackingResponse(response) {
   return {
     trackingNumber: response.trackingNumber,
     deliveryDateTime: response.deliveryDate,
@@ -83,7 +81,6 @@ async function formatTrackingResponse(response) {
 }
 
 function mapStatusCodes(statusCodes) {
-
   switch(statusCodes) {
     case "NY":
       return "accepted";

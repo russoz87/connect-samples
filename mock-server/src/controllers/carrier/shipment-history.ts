@@ -1,8 +1,8 @@
 import {Request, Response} from 'express'
 import {address, company, date, name, random} from 'faker'
 
-import {range} from '../../../utils/fp'
-import {Address} from '../../../utils/types'
+import {range} from '../../utils/fp'
+import {Address} from '../../utils/types'
 
 // CONSTANTS
 const Status = [
