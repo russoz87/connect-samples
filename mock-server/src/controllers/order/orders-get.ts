@@ -1,7 +1,8 @@
 import {Request, Response} from 'express'
 import {address, commerce, company, date, name, random} from 'faker'
 
-import {enumeration, range} from '../../utils/fp'
+import {range} from '../../utils/fp'
+import {enumValue} from '../../utils/random'
 import {Address} from '../../utils/types'
 
 // ENUMS
@@ -51,7 +52,7 @@ type ShippingItem = {
   product_id: string
 }
 
-type Order = {
+export type Order = {
   id: string
   created_at: string
   status: string
@@ -69,8 +70,8 @@ const item = (): ShippingItem => {
   return {
     id: random.uuid(),
     name: commerce.productName(),
-    quantity: random.number(10),
-    price_per_unit: random.number(10),
+    quantity: random.number(9) + 1,
+    price_per_unit: random.number(9) + 1,
     product_id: random.uuid()
   }
 }
@@ -79,7 +80,7 @@ const order = (): Order => {
   return {
     id: random.uuid(),
     created_at: date.recent().toISOString(),
-    status: enumeration(OrderStatus),
+    status: enumValue(OrderStatus),
     seller_id: random.uuid(),
     shipping_notes: random.words(4),
     buyer: {
@@ -87,8 +88,8 @@ const order = (): Order => {
       name: `${name.firstName()} ${name.lastName()}`
     },
     payment: {
-      status: enumeration(PaymentStatus),
-      method: enumeration(PaymentMethod)
+      status: enumValue(PaymentStatus),
+      method: enumValue(PaymentMethod)
     },
     address: {
       business_name: company.companyName(),

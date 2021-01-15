@@ -1,14 +1,14 @@
+'use strict';
+
 const axios = require('axios');
 
-const BASE_URL = 'http://localhost:9999'
+const BASE_URI = 'localhost:9999'
 
 const client = (app = null) => {
-  baseURL = app ? `${BASE_URL}/${app}/` : BASE_URL;
+  const baseURI = process.env.BASE_URI ? process.env.BASE_URI : BASE_URI;
+  const baseURL = app ? `http://${baseURI}/${app}/` : `http://${baseURI}`;
 
-  return axios.Axios({
-    baseURL,
-    responseType: 'json'
-  });
+  return axios.create({baseURL});
 }
 
 module.exports = client;

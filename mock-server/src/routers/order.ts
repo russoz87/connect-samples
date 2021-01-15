@@ -5,5 +5,5 @@ import {ordersVerify} from '../controllers/order/orders-verify'
 
 export const orderRouter = Router()
 
-orderRouter.get('/orders/get', ordersGet)
+orderRouter.post('/orders/get', ordersGet)
 orderRouter.post('/orders/verify', ordersVerify)

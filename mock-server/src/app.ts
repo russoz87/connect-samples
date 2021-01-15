@@ -14,4 +14,4 @@ const port = process.env.PORT ? process.env.PORT : 9999
 
 app.listen(port)
 
-console.log(`Application started on port: ${port}`)
+console.log(`Application started on port: ${port}.`)

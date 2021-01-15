@@ -2,6 +2,12 @@ import {Request, Response} from 'express'
 import {random} from 'faker'
 
 // TYPES
+export type Verification = {
+  sales_order_id: string
+  succeeded: boolean
+  reason_for_failure?: string
+}
+
 type RequestBody = {
   operation: string
   session_id: string
@@ -20,7 +26,7 @@ export const ordersVerify = (req: Request, res: Response): void => {
     return {
       sales_order_id,
       succeeded,
-      reason_for_failure: succeeded ? null : `Unable to process order id ${sales_order_id}`
+      reason_for_failure: succeeded ? null : `Unable to process order id ${sales_order_id}.`
     }
   })
 

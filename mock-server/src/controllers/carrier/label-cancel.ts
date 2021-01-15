@@ -20,7 +20,7 @@ type RequestBody = {
 }
 
 // HELPER FUNCTIONS
-const cancel = (cancellation: Cancellation): Result => {
+const cancel = (cancellation: Cancellation): Result => {  
   if (random.boolean()) {
     return {
       id: cancellation.id,

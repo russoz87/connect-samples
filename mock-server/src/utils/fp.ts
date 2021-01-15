@@ -16,16 +16,6 @@ export const cartesian = <T>(...a: T[][]): T[][] => {
 }
 
 /**
- * Return a random element from an `enumeration`.
- * 
- * @param enumeration 
- */
-export const enumeration = <T>(enumeration: T): string => {
-  const keys = Object.keys(enumeration).filter(k => !(Math.abs(Number.parseInt(k)) + 1))
-  return random.arrayElement(keys)
-}
-
-/**
  * Return a range array of `n` elements.
  * 
  * @param n 

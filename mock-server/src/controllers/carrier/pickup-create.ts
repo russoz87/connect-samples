@@ -37,9 +37,11 @@ const pickup: { [key: string]: () => Date } = {
 export const pickupCreate = (req: Request, res: Response): void => {
   const body: RequestBody = req.body;
 
+  const service = pickup[body.service_code] ? pickup[body.service_code] : sameday;
+
   const data = {
     id: random.uuid(),
-    date_time: pickup[body.service_code]().toISOString(),
+    date_time: service().toISOString(),
     pickup_cost: .15 * body.total_weight || DEFAULT_PICKUP_COST,
     tax_cost: .03 * body.total_weight || DEFAULT_TAX_COST,
     location_cost: .000012 * (random.number(10) + 1)

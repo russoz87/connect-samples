@@ -3,6 +3,11 @@ import {date, random} from 'faker'
 
 import {cartesian, range} from '../../utils/fp'
 
+// CONSTANTS
+const SERVICES = ["ECO", "STD", "ON"]
+
+const CONFIRMATIONS = ["SIG", "SIG-A", "SIG-R"]
+
 // TYPES
 type Rate = {
   service_code: string
@@ -47,9 +52,9 @@ const rate = (service_code: string, confirmation_code: string, parcel_code: stri
 export const shipmentRates = (req: Request, res: Response): void => {
   const body: RequestBody = req.body
 
-  const services = body.service_code ? [body.service_code] : range(random.number(3) + 1).map(() => random.word().toUpperCase())
-  const confirmations = body.confirmation_code ? [body.confirmation_code] : range(random.number(3) + 1).map(() => random.word().toUpperCase())
-  const packaging = body.parcel_codes && body.parcel_codes.length > 0 ? body.parcel_codes : range(random.number(3) + 1).map(() => random.word().toUpperCase())
+  const services = body.service_code ? [body.service_code] : SERVICES
+  const confirmations = body.confirmation_code ? [body.confirmation_code] : CONFIRMATIONS
+  const packaging = body.parcel_codes && body.parcel_codes.length > 0 ? body.parcel_codes : range(random.number(3) + 1).map(() => random.uuid())
 
   const matrix = cartesian(services, confirmations, packaging)
 

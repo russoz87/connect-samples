@@ -14,7 +14,7 @@ async function createManifest(transaction, manifest) {
   };
 
   // STEP 3: Call the carrier"s API
-  const response = await apiClient('cargo-inc').post('/manifest/create', data);
+  const response = await apiClient('carrier').post('/manifest/create', data);
 
   // STEP 4: Create the output data that ShipEngine Connect expects
   return formatManifestResponse(response.data);

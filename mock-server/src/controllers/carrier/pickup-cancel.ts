@@ -18,7 +18,7 @@ type Failure = {
 }
 
 type RequestBody = {
-  scheduled_pickups: PickUp[]
+  scheduled_pick_ups: PickUp[]
 }
 
 // HELPER FUNCTIONS
@@ -42,7 +42,9 @@ const check = (pickup: PickUp): Success | Failure => {
 export const pickupCancel = (req: Request, res: Response): void => {
   const body: RequestBody = req.body
 
-  const data = body.scheduled_pickups.map(check)
-
+  const data = {
+    canceled_pick_ups: body.scheduled_pick_ups.map(check)
+  }
+  
   res.json(data)
 }

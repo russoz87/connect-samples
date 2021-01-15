@@ -25,8 +25,8 @@ async function rateShipment(transaction, shipment) {
   // TODO: re-write the code to handle multiple package codes
   if(shipment.packages.length > 0) {
     data.parcel_codes = shipment.packages
-      .map((packages) => packages.packaging && packages.packaging.code)
-      .filter((packageCodes) => packageCodes !== undefined);
+      .map(packages => packages.packaging && packages.packaging.code)
+      .filter(packageCodes => packageCodes !== undefined);
   }
 
   if(shipment.deliveryConfirmation) {
@@ -38,7 +38,7 @@ async function rateShipment(transaction, shipment) {
   }
 
   // STEP 3: Call the carrier's API
-  const response = await apiClient('cargo-inc').request('/shipment/rates', data);
+  const response = await apiClient('carrier').post('/shipment/rates', data);
 
   // STEP 4: Create the output data that ShipEngine Connect expects
   return response.data.map(formatRate);
