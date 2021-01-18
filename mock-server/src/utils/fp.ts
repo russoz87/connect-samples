@@ -1,5 +1,3 @@
-import {random} from 'faker'
-
 /**
  * Return the cartesian product of `a` arrays.
  * 
