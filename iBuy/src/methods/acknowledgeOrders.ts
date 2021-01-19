@@ -1,9 +1,9 @@
-import {Transaction, SalesOrderNotification, AcknowledgedSalesOrder} from '@shipengine/connect';
+import {Transaction, SalesOrderNotification, AcknowledgedSalesOrder} from '@shipengine/connect'
 
-import {Verification} from 'mock-server';
+import {Verification} from 'mock-server'
 
-import {Session} from './connect';
-import {client} from '../api/client';
+import {client} from '../api/client'
+import {Session} from '../types/session'
 
 /**
  * Logs in using the username and password entered on the login form

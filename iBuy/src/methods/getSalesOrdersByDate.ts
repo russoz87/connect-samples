@@ -1,11 +1,11 @@
 import {Transaction, SalesOrderTimeRange, SalesOrders, SalesOrder} from '@shipengine/connect'
 
-import {Order} from 'mock-server';
+import {Order} from 'mock-server'
 
-import {Session} from './connect'
 import {client} from '../api/client'
+import {Session} from '../types/session'
 
-import {mapSalesOrderStatus, mapPaymentMethod, mapCountryCode} from '../status-and-mappings'
+import {mapSalesOrderStatus, mapPaymentMethod} from '../status-and-mappings'
 
 /**
  * Logs in using the username and password entered on the login form
