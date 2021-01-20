@@ -1,4 +1,4 @@
-import {OrderAppDefinition} from '@shipengine/connect';
+import {OrderAppDefinition} from '@shipengine/connect'
 
 const orderSource: OrderAppDefinition = {
   id: '3b76c08d-4299-4333-90bb-cd952bc68525',

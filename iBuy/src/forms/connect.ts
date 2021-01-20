@@ -1,11 +1,7 @@
-import {FormDefinition} from '@shipengine/connect';
+import {FormDefinition} from '@shipengine/connect'
 
 const connectionForm: FormDefinition = {
-  dataSchema: {
-    title: 'Login Form Example',
-    description: 'Connect to your account.',
-    type: 'object',
-  },
+  dataSchema: {},
   uiSchema: {},
 };
 

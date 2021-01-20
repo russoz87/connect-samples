@@ -1,8 +1,8 @@
-import {SalesOrderStatus, PaymentMethod, Country} from '@shipengine/connect';
+import {SalesOrderStatus, PaymentMethod, Country} from '@shipengine/connect'
 
-export const orderStatus = ['payment_needed', 'in_transit', 'on_hold', 'completed', 'cancelled'];
-export const paymentStatus = ['payment_needed', 'processing', 'paid', 'failed_payment', 'cancelled'];
-export const paymentMethod = ['cash', 'cc', 'transfer_from_bank'];
+export const orderStatus = ['payment_needed', 'in_transit', 'on_hold', 'completed', 'cancelled']
+export const paymentStatus = ['payment_needed', 'processing', 'paid', 'failed_payment', 'cancelled']
+export const paymentMethod = ['cash', 'cc', 'transfer_from_bank']
 
 export function mapSalesOrderStatus(status: string): SalesOrderStatus {
   const statusMapping = {
@@ -13,7 +13,7 @@ export function mapSalesOrderStatus(status: string): SalesOrderStatus {
     'cancelled': SalesOrderStatus.Cancelled
   }
 
-  return statusMapping[status];
+  return statusMapping[status]
 }
 
 export function mapPaymentMethod(status: string): PaymentMethod {
@@ -23,7 +23,7 @@ export function mapPaymentMethod(status: string): PaymentMethod {
     'transfer_from_bank': PaymentMethod.BankTransfer
   }
 
-  return statusMapping[status];
+  return statusMapping[status]
 }
 
 export function mapCountryCode(status: string): Country {
@@ -33,5 +33,5 @@ export function mapCountryCode(status: string): Country {
     'CA': Country.Canada
   }
 
-  return statusMapping[status];
+  return statusMapping[status]
 }
