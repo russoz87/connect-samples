@@ -11,7 +11,8 @@ const orderSource: OrderAppDefinition = {
   settingsForm: import('./forms/settings'),
   oauthConfig: import('./forms/oauth'),
   getSalesOrdersByDate: import('./methods/getSalesOrdersByDate'),
-  acknowledgeOrders: import('./methods/acknowledgeOrders')
+  acknowledgeOrders: import('./methods/acknowledgeOrders'),
+  shipmentCreated: import('./methods/shipmentCreated')
 }
 
 export default orderSource;

@@ -15,7 +15,6 @@ export default async function getSalesOrdersByDate(
   range: SalesOrderTimeRange,
 ): Promise<SalesOrders> {
   // STEP 1: Validation
-  // Add any desired validation here
 
   // STEP 2: Create the data that the order's API expects
   const data = {
@@ -23,13 +22,13 @@ export default async function getSalesOrdersByDate(
     session_id: transaction.session.id,
     start_date: range.startDateTime,
     end_date: range.endDateTime
-  };
+  }
 
   // STEP 3: Call the order source's API
-  const response = await client('order').post('/orders/get', data);
+  const response = await client('order').post('/orders/get', data)
 
   // Step 4: Create the output data that ShipEngine expects
-  return { salesOrders: formatSalesOrders(response.data) };
+  return { salesOrders: formatSalesOrders(response.data) }
 }
 
 function formatSalesOrders(salesOrders: Order[]): SalesOrder[] {
@@ -70,5 +69,5 @@ function formatSalesOrders(salesOrders: Order[]): SalesOrder[] {
         name: salesOrder.buyer.name
       },
     }
-  }) as SalesOrder[];
+  }) as SalesOrder[]
 }

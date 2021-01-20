@@ -13,20 +13,19 @@ export default async function acknowledgeOrders(
   notifications: SalesOrderNotification[],
 ): Promise<AcknowledgedSalesOrder[]> {
   // STEP 1: Validation
-  // Add any desired validation here
 
   // STEP 2: Create the data that the order's API expects
   const data = {
     operation: "verify_orders",
     session_id: transaction.session.id,
     sales_order_ids: notifications.map(notification => notification.id)
-  };
+  }
 
   // STEP 3: Call the order source's API
-  const response = await client('order').post('/orders/verify', data);
+  const response = await client('order').post('/orders/verify', data)
 
   // Step 4: Create the output data that ShipEngine expects
-  return formatAcknowledgedSalesOrders(response.data);
+  return formatAcknowledgedSalesOrders(response.data)
 }
 
 function formatAcknowledgedSalesOrders(verifiedSalesOrders: Verification[]): AcknowledgedSalesOrder[] {
@@ -43,5 +42,5 @@ function formatAcknowledgedSalesOrders(verifiedSalesOrders: Verification[]): Ack
       succeeded: false,
       failureReason: acknowledgedOrder.reason_for_failure
     }
-  });
+  })
 }
